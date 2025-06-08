@@ -7,17 +7,28 @@ function BlackThemeSkipSelector() {
   const [isLoading, setIsLoading] = useState(true);
   
 
-  const skipData = [
-    {"id":17933,"size":4,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":278,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:52.813","allowed_on_road":true,"allows_heavy_waste":true},
-    {"id":17934,"size":6,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":305,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:52.992","allowed_on_road":true,"allows_heavy_waste":true},
-    {"id":17935,"size":8,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":375,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:53.171","allowed_on_road":true,"allows_heavy_waste":true},
-    {"id":17936,"size":10,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":400,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:53.339","allowed_on_road":false,"allows_heavy_waste":false},
-    {"id":17937,"size":12,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":439,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:53.516","allowed_on_road":false,"allows_heavy_waste":false},
-    {"id":17938,"size":14,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":470,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:53.69","allowed_on_road":false,"allows_heavy_waste":false},
-    {"id":17939,"size":16,"hire_period_days":14,"transport_cost":null,"per_tonne_cost":null,"price_before_vat":496,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:46.897146","updated_at":"2025-04-07T13:16:53.876","allowed_on_road":false,"allows_heavy_waste":false},
-    {"id":15124,"size":20,"hire_period_days":14,"transport_cost":248,"per_tonne_cost":248,"price_before_vat":992,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:40.344435","updated_at":"2025-04-07T13:16:52.434","allowed_on_road":false,"allows_heavy_waste":true},
-    {"id":15125,"size":40,"hire_period_days":14,"transport_cost":248,"per_tonne_cost":248,"price_before_vat":992,"vat":20,"postcode":"NR32","area":"","forbidden":false,"created_at":"2025-04-03T13:51:40.344435","updated_at":"2025-04-07T13:16:52.603","allowed_on_road":false,"allows_heavy_waste":false}
-  ];
+const [skipData, setSkipData] = useState([]);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  const fetchSkipData = async () => {
+    try {
+      const response = await fetch('https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft'); // Replace with your actual URL
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setSkipData(data);
+    } catch (err) {
+      console.error('Failed to fetch skip data:', err);
+      setError('Failed to load skips. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchSkipData();
+}, []);
 
 
   const calculateFinalPrice = (priceBeforeVat, vat) => {
@@ -53,14 +64,22 @@ function BlackThemeSkipSelector() {
     setSelectedSkip(skip);
   };
 
-  if (isLoading) {
-    return (
-      <div style={styles.loadingContainer}>
-        <div style={styles.loadingSpinner}></div>
-        <p style={styles.loadingText}>Loading premium skip options...</p>
-      </div>
-    );
-  }
+ if (isLoading) {
+  return (
+    <div style={styles.loadingContainer}>
+      <div style={styles.loadingSpinner}></div>
+      <p style={styles.loadingText}>Loading premium skip options...</p>
+    </div>
+  );
+}
+
+if (error) {
+  return (
+    <div style={styles.loadingContainer}>
+      <p style={styles.loadingText}>{error}</p>
+    </div>
+  );
+}
 
   return (
     <div style={styles.container}>
@@ -512,7 +531,7 @@ const styles = {
 
   skipVisual: {
     height: '140px',
-    background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)',
+    background: 'linear-gradient(135deg,rgb(182, 166, 19) 0%,rgb(85, 74, 74) 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -526,7 +545,7 @@ const styles = {
   skipBox: {
     width: '80px',
     height: '60px',
-    backgroundColor: '#333',
+    backgroundColor: '#FFD700',
     borderRadius: '4px',
     border: '2px solid #555',
     position: 'relative',

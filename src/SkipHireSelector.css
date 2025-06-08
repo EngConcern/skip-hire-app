@@ -1,0 +1,285 @@
+.skip-container {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.max-width-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Progress Steps */
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.progress-step.active {
+  opacity: 1;
+}
+
+.progress-step.completed {
+  opacity: 1;
+}
+
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.step-circle.completed {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.step-circle.active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.step-circle.inactive {
+  background-color: #4b5563;
+  color: #9ca3af;
+}
+
+.step-text {
+  font-size: 14px;
+}
+
+/* Title Section */
+.title-section {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.main-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #9ca3af;
+  font-size: 1rem;
+}
+
+/* Skip Grid */
+.skip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.skip-card {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  border: 2px solid #4b5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.skip-card:hover {
+  transform: scale(1.02);
+  border-color: #6b7280;
+}
+
+.skip-card.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Skip Image */
+.skip-image {
+  height: 200px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capacity-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #3b82f6;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.skip-illustration {
+  width: 128px;
+  height: 96px;
+  background-color: #eab308;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(2deg);
+}
+
+.skip-inner {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px solid #a16207;
+  border-radius: 4px;
+}
+
+.skip-logo {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+/* Skip Details */
+.skip-details {
+  padding: 16px;
+}
+
+.skip-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.skip-period {
+  color: #9ca3af;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.price-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.price {
+  color: #60a5fa;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Buttons */
+.select-button {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.select-button.selected {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.select-button.unselected {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+.select-button.unselected:hover {
+  background-color: #4b5563;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.back-button {
+  border: 1px solid #4b5563;
+  background-color: transparent;
+  color: #d1d5db;
+}
+
+.back-button:hover {
+  background-color: #1f2937;
+}
+
+.continue-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.continue-button:hover {
+  background-color: #2563eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skip-container {
+    padding: 16px;
+  }
+  
+  .progress-steps {
+    gap: 16px;
+  }
+  
+  .main-title {
+    font-size: 1.5rem;
+  }
+  
+  .skip-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bottom-nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+}
